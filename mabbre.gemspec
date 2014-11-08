@@ -5,7 +5,7 @@ require "mabbre/version"
 
 Gem::Specification.new do |spec|
   spec.name          = "mabbre"
-  spec.version       = Mabbre::VERSION
+  spec.version       = MAbbre::VERSION
   spec.authors       = ["Gabriel de Oliveira"]
   spec.email         = ["deoliveira.gab@gmail.com"]
   spec.summary       = "Write a short summary. Required."
