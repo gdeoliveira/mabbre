@@ -7,6 +7,6 @@ end
 guard :rubocop do
   watch(/^.+\.rb$/)
   watch(/^(?:.+\/)?\.rubocop\.yml$/) {|m| File.dirname(m[0]) }
-  watch(/^(?:.+\/)?.+\.gemspec$/) {|m| File.dirname(m[0]) }
-  watch(/^(?:.+\/)?(?:Gem|Rake)file$/) {|m| File.dirname(m[0]) }
+  watch(/^(?:.+\/)?.+\.gemspec$/)
+  watch(/^(?:.+\/)?(?:Gem|Rake)file$/)
 end
