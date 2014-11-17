@@ -10,3 +10,7 @@ rvm:
 - jruby-1.7
 - jruby-1.6
 bundler_args: "--without development"
+addons:
+  code_climate:
+    repo_token:
+      secure: G3aVZeyCMZutQxsLu+hYHWgR/kqeLyn120obZwZ/17xc/VFx1y1F5f9Cqw/awj/f8+xl+UinOp69AM8w1JAEqD5I4N8L1nLJja+CSrWYUxSBOpGua6CtrEWB1VLyoxdXUNOL1oGQenKXZqQtbHRyUPuxebaP1K1XUHO3X5wnb6k=
