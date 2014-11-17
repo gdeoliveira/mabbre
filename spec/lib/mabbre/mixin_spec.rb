@@ -16,9 +16,9 @@ describe MAbbre::Mixin do
         mod = ::Module.new.module_eval do
           extend MAbbre::Mixin
           allow_abbreviated do
-            define_method :qwe, METHOD_DEFINITION
-            define_method :asd, METHOD_DEFINITION
-            define_method :zxc, METHOD_DEFINITION
+            define_method :qwe, &METHOD_DEFINITION
+            define_method :asd, &METHOD_DEFINITION
+            define_method :zxc, &METHOD_DEFINITION
           end
         end
         expect(mod).to be_a(Set)
@@ -43,7 +43,7 @@ describe MAbbre::Mixin do
       Module.new.tap do |m|
         m.module_eval do
           include MAbbre::Mixin
-          define_method :base_extension_meth, METHOD_DEFINITION
+          define_method :base_extension_meth, &METHOD_DEFINITION
         end
       end
     end
@@ -53,7 +53,7 @@ describe MAbbre::Mixin do
       Module.new.tap do |m|
         m.module_eval do
           include be
-          define_method :sub_extension_meth, METHOD_DEFINITION
+          define_method :sub_extension_meth, &METHOD_DEFINITION
         end
       end
     end
@@ -63,13 +63,13 @@ describe MAbbre::Mixin do
       Module.new.tap do |m|
         m.module_eval do
           extend se
-          define_method :meth_00_extra, METHOD_DEFINITION
+          define_method :meth_00_extra, &METHOD_DEFINITION
           allow_abbreviated do
-            define_method :meth_01_extra, METHOD_DEFINITION
-            define_method :meth_02_extra, METHOD_DEFINITION
-            define_method :meth_03_extra, METHOD_DEFINITION
+            define_method :meth_01_extra, &METHOD_DEFINITION
+            define_method :meth_02_extra, &METHOD_DEFINITION
+            define_method :meth_03_extra, &METHOD_DEFINITION
           end
-          define_method :meth_09_extra, METHOD_DEFINITION
+          define_method :meth_09_extra, &METHOD_DEFINITION
         end
       end
     end
@@ -79,13 +79,13 @@ describe MAbbre::Mixin do
       Module.new.tap do |m|
         m.module_eval do
           include bm
-          define_method :meth_10_extra, METHOD_DEFINITION
+          define_method :meth_10_extra, &METHOD_DEFINITION
           allow_abbreviated do
-            define_method :meth_11_extra, METHOD_DEFINITION
-            define_method :meth_12_extra, METHOD_DEFINITION
-            define_method :meth_13_extra, METHOD_DEFINITION
+            define_method :meth_11_extra, &METHOD_DEFINITION
+            define_method :meth_12_extra, &METHOD_DEFINITION
+            define_method :meth_13_extra, &METHOD_DEFINITION
           end
-          define_method :meth_19_extra, METHOD_DEFINITION
+          define_method :meth_19_extra, &METHOD_DEFINITION
         end
       end
     end
@@ -95,13 +95,13 @@ describe MAbbre::Mixin do
       Class.new.tap do |c|
         c.class_eval do
           include sm
-          define_method :meth_20_extra, METHOD_DEFINITION
+          define_method :meth_20_extra, &METHOD_DEFINITION
           allow_abbreviated do
-            define_method :meth_21_extra, METHOD_DEFINITION
-            define_method :meth_22_extra, METHOD_DEFINITION
-            define_method :meth_23_extra, METHOD_DEFINITION
+            define_method :meth_21_extra, &METHOD_DEFINITION
+            define_method :meth_22_extra, &METHOD_DEFINITION
+            define_method :meth_23_extra, &METHOD_DEFINITION
           end
-          define_method :meth_29_extra, METHOD_DEFINITION
+          define_method :meth_29_extra, &METHOD_DEFINITION
         end
       end
     end
@@ -110,13 +110,13 @@ describe MAbbre::Mixin do
       sc = super_class
       Class.new(sc).tap do |c|
         c.class_eval do
-          define_method :meth_30_extra, METHOD_DEFINITION
+          define_method :meth_30_extra, &METHOD_DEFINITION
           allow_abbreviated do
-            define_method :meth_31_extra, METHOD_DEFINITION
-            define_method :meth_32_extra, METHOD_DEFINITION
-            define_method :meth_33_extra, METHOD_DEFINITION
+            define_method :meth_31_extra, &METHOD_DEFINITION
+            define_method :meth_32_extra, &METHOD_DEFINITION
+            define_method :meth_33_extra, &METHOD_DEFINITION
           end
-          define_method :meth_39_extra, METHOD_DEFINITION
+          define_method :meth_39_extra, &METHOD_DEFINITION
         end
       end
     end
