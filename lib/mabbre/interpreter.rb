@@ -6,12 +6,10 @@ module MAbbre
 
     ##
     # call-seq:
-    #   method_missing(name, *args) => name
+    #   method_missing(name, *args)
     #
     # If a suitable candidate for abbreviation +name+ is found it will be called using +args+. Otherwise it will let
     # +super+ handle the missing method.
-    #
-    # Returns passed +name+.
     def method_missing(name, *args)
       matched = nil
 
@@ -20,8 +18,6 @@ module MAbbre
       else
         super
       end
-
-      name
     end
   end
 end
