@@ -36,6 +36,8 @@ Or install it yourself as:
 Step 1: Define methods within an `allow_abbreviated` block in a Class or a Module:
 
 ```ruby
+require "mabbre"
+
 module M
   extend MAbbre::Mixin
   allow_abbreviated do

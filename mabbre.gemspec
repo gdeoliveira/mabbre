@@ -8,8 +8,13 @@ Gem::Specification.new do |spec|
   spec.version       = MAbbre::VERSION
   spec.authors       = ["Gabriel de Oliveira"]
   spec.email         = ["deoliveira.gab@gmail.com"]
-  spec.summary       = "Write a short summary. Required."
-  spec.description   = "Write a longer description. Optional."
+  spec.summary       = "Enable shortened method names on classes and modules."
+  spec.description   = <<-EOS.strip.gsub(/\n/, "").gsub(/\s{2,}/, " ")
+                         MAbbre allows a group of methods in a Class or a
+                         Module to be accessed using an abbreviated form.
+                         These methods can be defined anywhere within a
+                         hierarchy of inclusion and/or inheritance.
+                       EOS
   spec.homepage      = "https://github.com/gdeoliveira/mabbre"
   spec.license       = "MIT"
 
