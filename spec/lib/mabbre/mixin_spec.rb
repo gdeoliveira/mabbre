@@ -150,29 +150,6 @@ describe MAbbre::Mixin do
                                                                 :meth_11_extra, :meth_12_extra, :meth_13_extra,
                                                                 :meth_21_extra, :meth_22_extra, :meth_23_extra])
       end
-
-      describe "instance" do
-        subject { super_class.new }
-
-        it "avoids calling ambiguous methods" do
-          expect { subject.meth }.to raise_error(NoMethodError)
-          expect { subject.meth_0 }.to raise_error(NoMethodError)
-          expect { subject.meth_1 }.to raise_error(NoMethodError)
-          expect { subject.meth_2 }.to raise_error(NoMethodError)
-        end
-
-        it "calls resolvable methods that can be abbreviated" do
-          expect(subject.meth_01).to be(:meth_01_extra)
-          expect(subject.meth_12).to be(:meth_12_extra)
-          expect(subject.meth_23).to be(:meth_23_extra)
-        end
-
-        it "avoids calling resolvable methods that can't be abbreviated" do
-          expect { subject.meth_00 }.to raise_error(NoMethodError)
-          expect { subject.meth_10 }.to raise_error(NoMethodError)
-          expect { subject.meth_20 }.to raise_error(NoMethodError)
-        end
-      end
     end
 
     context "sub class" do
@@ -188,6 +165,8 @@ describe MAbbre::Mixin do
       describe "instance" do
         subject { sub_class.new }
 
+        it { should_not respond_to(:meth, :meth_0, :meth_1, :meth_2, :meth_3) }
+
         it "avoids calling ambiguous methods" do
           expect { subject.meth }.to raise_error(NoMethodError)
           expect { subject.meth_0 }.to raise_error(NoMethodError)
@@ -196,12 +175,16 @@ describe MAbbre::Mixin do
           expect { subject.meth_3 }.to raise_error(NoMethodError)
         end
 
+        it { should respond_to(:meth_01, :meth_12, :meth_23, :meth_31) }
+
         it "calls resolvable methods that can be abbreviated" do
           expect(subject.meth_02).to be(:meth_02_extra)
           expect(subject.meth_13).to be(:meth_13_extra)
           expect(subject.meth_21).to be(:meth_21_extra)
           expect(subject.meth_32).to be(:meth_32_extra)
         end
+
+        it { should_not respond_to(:meth_00, :meth_10, :meth_20, :meth_30) }
 
         it "avoids calling resolvable methods that can't be abbreviated" do
           expect { subject.meth_09 }.to raise_error(NoMethodError)

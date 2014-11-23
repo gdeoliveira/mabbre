@@ -19,5 +19,17 @@ module MAbbre
         super
       end
     end
+
+    ##
+    # call-seq:
+    #   respond_to_missing?(name, include_all) => true or false
+    #
+    # Checks if this object responds to abbreviation +name+. The +include_all+ parameter is not used but it will
+    # be passed to +super+ if no suitable candidate is found.
+    #
+    # Returns +true+ if this object responds to +name+, or whatever +super+ returns otherwise.
+    def respond_to_missing?(name, include_all)
+      self.class.tracked_methods(MAbbre).one? {|m| m.to_s =~ /\A#{name}/ } or super
+    end
   end
 end
