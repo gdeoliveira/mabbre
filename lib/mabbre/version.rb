@@ -35,5 +35,5 @@
 module MAbbre
   ##
   # Current version of MAbbre.
-  VERSION = "0.0.2"
+  VERSION = "0.0.3"
 end
