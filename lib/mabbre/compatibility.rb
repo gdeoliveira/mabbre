@@ -6,6 +6,8 @@ module MAbbre # rubocop:disable Style/Documentation
   # versions/implementations. After the environment is patched it will be automatically removed.
   module Compatibility
     class << self
+      include Constants
+
       private
 
       ##
