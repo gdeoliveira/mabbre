@@ -3,17 +3,6 @@ module MAbbre # rubocop:disable Style/Documentation
   # This is a temporary module that is run when loading MAbbre in order to add patches on some Ruby
   # versions/implementations. After the environment is patched it will be automatically removed.
   module Compatibility
-    ##
-    # Relative path to the directory where patch files for the Object class live.
-    PATH_TO_OBJECT_PATCHES = "mabbre/patch/object_mixin".freeze
-
-    ##
-    # A hash of patch names for the Object class. Each patch name has a +true+ or +false+ value assigned that represents
-    # if they need to be applied or not.
-    OBJECT_PATCHES = {
-      :respond_to_missing => !Object.private_instance_methods.map(&:to_sym).include?(:respond_to_missing?)
-    }.freeze
-
     class << self
       private
 
@@ -40,7 +29,27 @@ module MAbbre # rubocop:disable Style/Documentation
         OBJECT_PATCHES.each {|patch, needed| require "#{PATH_TO_OBJECT_PATCHES}/#{patch}" if needed }
         Object.instance_eval { include Patch::ObjectMixin } if OBJECT_PATCHES.values.any?
       end
+
+      ##
+      # call-seq:
+      #   needs_respond_to_missing?() => true or false
+      #
+      # Returns +true+ if Object needs to be patched with MAbbre::Patch::ObjectMixin and +false+ otherwise.
+      def needs_respond_to_missing?
+        !Object.private_instance_methods.map(&:to_sym).include?(:respond_to_missing?)
+      end
     end
+
+    ##
+    # Relative path to the directory where patch files for the Object class live.
+    PATH_TO_OBJECT_PATCHES = "mabbre/patch/object_mixin".freeze
+
+    ##
+    # A hash of patch names for the Object class. Each patch name has a +true+ or +false+ value assigned that represents
+    # if they need to be applied or not.
+    OBJECT_PATCHES = {
+      :respond_to_missing => needs_respond_to_missing?
+    }.freeze
 
     init_self
   end
