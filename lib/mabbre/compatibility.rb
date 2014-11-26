@@ -1,10 +1,19 @@
-require "mabbre/compatibility/constants"
-
 module MAbbre # rubocop:disable Style/Documentation
   ##
   # This is a temporary module that is run when loading MAbbre in order to add patches on some Ruby
   # versions/implementations. After the environment is patched it will be automatically removed.
   module Compatibility
+    ##
+    # Relative path to the directory where patch files for the Object class live.
+    PATH_TO_OBJECT_PATCHES = "mabbre/patch/object_mixin".freeze
+
+    ##
+    # A hash of patch names for the Object class. Each patch name has a +true+ or +false+ value assigned that represents
+    # if they need to be applied or not.
+    OBJECT_PATCHES = {
+      :respond_to_missing => !Object.private_instance_methods.map(&:to_sym).include?(:respond_to_missing?)
+    }.freeze
+
     class << self
       private
 
