@@ -29,15 +29,6 @@ module MAbbre # rubocop:disable Style/Documentation
         OBJECT_PATCHES.each {|patch, needed| require "#{PATH_TO_OBJECT_PATCHES}/#{patch}" if needed }
         Object.instance_eval { include Patch::ObjectMixin } if OBJECT_PATCHES.values.any?
       end
-
-      ##
-      # call-seq:
-      #   needs_respond_to_missing?() => true or false
-      #
-      # Returns +true+ if Object needs to be patched with MAbbre::Patch::ObjectMixin and +false+ otherwise.
-      def needs_respond_to_missing?
-        !Object.private_instance_methods.map(&:to_sym).include?(:respond_to_missing?)
-      end
     end
 
     ##
@@ -48,7 +39,7 @@ module MAbbre # rubocop:disable Style/Documentation
     # A hash of patch names for the Object class. Each patch name has a +true+ or +false+ value assigned that represents
     # if they need to be applied or not.
     OBJECT_PATCHES = {
-      :respond_to_missing => needs_respond_to_missing?
+      :respond_to_missing => !Object.private_instance_methods.map(&:to_sym).include?(:respond_to_missing?)
     }.freeze
 
     init_self
