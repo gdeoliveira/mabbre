@@ -39,7 +39,7 @@ module MAbbre # rubocop:disable Style/Documentation
     # A hash of patch names for the Object class. Each patch name has a +true+ or +false+ value assigned that represents
     # if they need to be applied or not.
     OBJECT_PATCHES = {
-      :respond_to_missing => !Object.private_instance_methods.map(&:to_sym).include?(:respond_to_missing?)
+      respond_to_missing: !Object.private_instance_methods.map(&:to_sym).include?(:respond_to_missing?)
     }.freeze
 
     init_self
