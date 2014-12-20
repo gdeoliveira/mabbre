@@ -13,7 +13,7 @@ module MAbbre
     def method_missing(name, *args)
       matched = nil
 
-      if self.class.tracked_methods(MAbbre).one? {|m| matched = m if m.to_s =~ /\A#{name}/ }
+      if self.class.tracked_methods(MAbbre).one? {|m| matched = m if m =~ /\A#{name}/ }
         send(matched, *args)
       else
         super
@@ -29,7 +29,7 @@ module MAbbre
     #
     # Returns +true+ if this object responds to +name+, or whatever +super+ returns otherwise.
     def respond_to_missing?(name, include_all)
-      self.class.tracked_methods(MAbbre).one? {|m| m.to_s =~ /\A#{name}/ } or super
+      self.class.tracked_methods(MAbbre).one? {|m| m =~ /\A#{name}/ } or super
     end
   end
 end

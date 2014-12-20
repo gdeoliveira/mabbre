@@ -6,9 +6,9 @@ describe MAbbre::Mixin do
   describe "#allow_abbreviated" do
     it "is added after extending #{described_class}" do
       mod = ::Module.new
-      expect(mod.private_methods.map(&:to_sym)).not_to include(:allow_abbreviated)
+      expect(mod.private_methods).not_to include(:allow_abbreviated)
       mod.module_eval { extend MAbbre::Mixin }
-      expect(mod.private_methods.map(&:to_sym)).to include(:allow_abbreviated)
+      expect(mod.private_methods).to include(:allow_abbreviated)
     end
 
     context "block given" do
@@ -125,7 +125,7 @@ describe MAbbre::Mixin do
       subject { base_module }
 
       it "has custom extensions as ancestors" do
-        expect(subject.singleton_methods.map(&:to_sym)).to include(:base_extension_meth, :sub_extension_meth)
+        expect(subject.singleton_methods).to include(:base_extension_meth, :sub_extension_meth)
       end
 
       it "tracks methods that can be abbreviated" do
