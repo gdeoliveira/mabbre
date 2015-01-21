@@ -20,5 +20,5 @@ defined anywhere within a hierarchy of inclusion and/or inheritance.
   spec.test_files = spec.files.grep(/^(test|spec|features)\//)
   spec.require_paths = ["lib"]
   spec.rdoc_options << "--title=MAbbre"
-  spec.add_dependency "mtrack", "~> 2.0"
+  spec.add_dependency "mtrack", "~> 2.1"
 end
